@@ -1,1 +1,1 @@
-worker: node ./events/ready.js
+worker: node index.js
