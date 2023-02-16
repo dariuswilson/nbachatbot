@@ -34,4 +34,4 @@
 		"semi": ["error", "always"],
 		"yoda": "error"
 	}
-}//test
+}
