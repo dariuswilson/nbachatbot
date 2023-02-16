@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, client } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -7,26 +7,23 @@ module.exports = {
 		.addUserOption(option =>
 			option.setName('user')
 				.setDescription('Enter user that is breaking the rules.')
-				.setRequired(true))
+				// eslint-disable-next-line no-inline-comments
+				.setRequired(true)) // .setRequired() is, by default, true so the line isn't needed.
 		.addStringOption(option =>
 			option.setName('reason')
 				// eslint-disable-next-line quotes
 				.setDescription("Reason you're reporting this user.")
 				.setRequired(true)
 				.addChoices(
-					{ name: 'Rule 1 - Discord TOS', value: 'Rule1' },
-					{ name: 'Rule 2 - Harassment', value: 'Rule2' },
-					{ name: 'Rule 3 - Racism', value: 'Rule3' },
-					{ name: 'Rule 4 - Drama Starting/Baiting', value: 'Rule4' },
-					{ name: 'Rule 5 - Bypassing', value: 'Rule5' },
-					{ name: 'Rule 6 - Sensitive Topics', value: 'Rule6' },
-					{ name: 'Rule 7 - NSFW', value: 'Rule7' },
-					{ name: 'Rule 8 - Advertising', value: 'Rule8' },
-					{ name: 'Rule 9 - Spam', value: 'Rule9' },
-					{ name: 'Rule 10 - IP Grabbers/etc', value: 'Rule10' },
-					{ name: 'Rule 11 - Abusing Report', value: 'Rule11' },
-					{ name: 'Rule 12 - Trolling Team Servers/Chats', value: 'Rule12' },
-					{ name: 'Rule 13 - Public Argument over Infractions', value: 'Rule13' },
+					{ name: 'Discord TOS', value: 'Rule1' },
+                    { name: 'Harassment', value: 'Rule2' },
+                    { name: 'Racism', value: 'Rule3' },
+                    { name: 'Sensitive Topics', value: 'Rule4' },
+                    { name: 'NSFW', value: 'Rule5' },
+                    { name: 'Advertising', value: 'Rule6' },
+                    { name: 'Spam', value: 'Rule7' },
+                    { name: 'IP Grabbers/etc', value: 'Rule8' },
+					{ name: 'Other', value: 'OtherReason' },
 				),
 			)
 		// eslint-disable-next-line no-inline-comments
@@ -34,6 +31,33 @@ module.exports = {
 	async execute(interaction) {
 		// interaction.channels.get('568454707039830049').send('test'),
 		// channel.send('test');
+
+		const reportedUser = interaction.options.getUser('user') // Gets the User option with the name 'user'
+		const reportReason = interaction.options.getString('reason') // Gets the String option with name 'reason'
+
+		if (reportReason === 'OtherReason') { // If the reason selected is 'OtherReason'		
+			const otherReportOption = new ModalBuilder()
+				.setCustomId('Report Other')
+				.setTitle('Reporting Information');
+
+				const inputOtherReason = new TextInputBuilder()
+				.setCustomId('inputOtherReason')
+				// The label is the prompt the user sees for this input
+				.setLabel('What\'s the reason for reporting this user?')
+				// Short means only a single line of text
+				.setStyle(TextInputStyle.Paragraph)
+				.setPlaceholder('Reason for Report');
+
+		// An action row only holds one text input,
+		// so you need one action row per text input.
+		const firstActionRow = new ActionRowBuilder().addComponents(inputOtherReason);
+
+		// Add inputs to the modal
+		otherReportOption.addComponents(firstActionRow);
+
+			await interaction.showModal(otherReportOption);
+		}
+
 		await interaction.reply({
 			content: 'Your report has been submitted to online moderators.',
 			// ephemeral: true,

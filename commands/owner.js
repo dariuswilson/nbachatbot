@@ -7,7 +7,7 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply({
 			content: '**This bot was made by <@!520355927308894218>**',
-			// ephemeral: true, // If true, makes command private.
+			// ephemeral: true, // If true, makes response private.
 		});
 	},
 };

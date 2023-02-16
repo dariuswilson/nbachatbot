@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-// const { token } = require('./config.json');
+// eslint-disable-next-line no-inline-comments
+const { token } = require('./config.json'); // Take this out when i want to run forever.
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -29,4 +30,5 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.login(process.env.TOKEN);
+// client.login(process.env.TOKEN); // enable this when i want it to run forever
+client.login(token);
