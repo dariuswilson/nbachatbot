@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 // eslint-disable-next-line no-inline-comments
-const { token } = require('./config.json'); // Take this out when i want to run forever.
+require('dotenv').config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -30,5 +30,4 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-// client.login(process.env.TOKEN); // enable this when i want it to run forever
-client.login(token);
+client.login(process.env.NBA_BOT_TOKEN);
