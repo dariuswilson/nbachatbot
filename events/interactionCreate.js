@@ -23,9 +23,12 @@ module.exports = {
 		}
 		else if (interaction.isModalSubmit()) {
 			// Handle the ModaLSubmitInteraction Here
-			const otherReason = interaction.fields.getTextInputValue('inputOtherReason');
-			await interaction.reply('Your report has been submitted to online moderators.');
-			console.log(otherReason);
+			if (interaction.customId === 'Report Other') {
+				const otherReason = interaction.fields.getTextInputValue('inputOtherReason');
+					interaction.reply ({ content: `Your report has been submitted to online moderators. ${interaction.targetMember}, 
+					Reason: ${otherReason}` });
+			}
 		}
+		console.log(interaction);
 	},
 };

@@ -35,12 +35,12 @@ module.exports = {
 		const reportedUser = interaction.options.getUser('user') // Gets the User option with the name 'user'
 		const reportReason = interaction.options.getString('reason') // Gets the String option with name 'reason'
 
-		if (reportReason === 'OtherReason') { // If the reason selected is 'OtherReason'		
+		if (reportReason === 'OtherReason') { // If the reason selected is 'OtherReason'
 			const otherReportOption = new ModalBuilder()
 				.setCustomId('Report Other')
 				.setTitle('Reporting Information');
 
-				const inputOtherReason = new TextInputBuilder()
+			const inputOtherReason = new TextInputBuilder()
 				.setCustomId('inputOtherReason')
 				// The label is the prompt the user sees for this input
 				.setLabel('What\'s the reason for reporting this user?')
@@ -55,12 +55,15 @@ module.exports = {
 		// Add inputs to the modal
 		otherReportOption.addComponents(firstActionRow);
 
-			await interaction.showModal(otherReportOption);
+		await interaction.showModal(otherReportOption);
 		}
-
+		else {
+			// const channel = client.channels.cache.get('568454707039830049');
+			// channel.send('test');
 		await interaction.reply({
 			content: 'Your report has been submitted to online moderators.',
 			// ephemeral: true,
 		});
+}
 	},
 };
