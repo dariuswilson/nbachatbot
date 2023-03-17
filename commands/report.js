@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,23 +15,23 @@ module.exports = {
 				.setDescription("Reason you're reporting this user.")
 				.setRequired(true)
 				.addChoices(
-					{ name: 'Discord TOS', value: 'Rule1' },
-                    { name: 'Harassment', value: 'Rule2' },
-                    { name: 'Racism', value: 'Rule3' },
-                    { name: 'Sensitive Topics', value: 'Rule4' },
-                    { name: 'NSFW', value: 'Rule5' },
-                    { name: 'Advertising', value: 'Rule6' },
-                    { name: 'Spam', value: 'Rule7' },
-                    { name: 'IP Grabbers/etc', value: 'Rule8' },
+					{ name: 'Discord TOS', value: 'Discord TOS' },
+                    { name: 'Harassment', value: 'Harassment' },
+                    { name: 'Racism', value: 'Racism' },
+                    { name: 'Sensitive Topics', value: 'Sensitive Topics' },
+                    { name: 'NSFW', value: 'NSFW' },
+                    { name: 'Advertising', value: 'Advertising' },
+                    { name: 'Spam', value: 'Spam' },
+                    { name: 'IP Grabbers/etc', value: 'IP Grabbers/etc' },
 					{ name: 'Other', value: 'OtherReason' },
 				),
-			)
+			),
 		// eslint-disable-next-line no-inline-comments
-		.setDefaultMemberPermissions(PermissionFlagsBits.ManageNicknames), // Temp because command is still in the works, when done, delete!!
+		// .setDefaultMemberPermissions(PermissionFlagsBits.ManageNicknames), // Temp because command is still in the works, when done, delete!!
+/**
+* @param { ChatInputCommandInteraction} interaction
+*/
 	async execute(interaction) {
-		// interaction.channels.get('568454707039830049').send('test'),
-		// channel.send('test');
-
 		const reportedUser = interaction.options.getUser('user') // Gets the User option with the name 'user'
 		const reportReason = interaction.options.getString('reason') // Gets the String option with name 'reason'
 
@@ -56,14 +56,22 @@ module.exports = {
 		otherReportOption.addComponents(firstActionRow);
 
 		await interaction.showModal(otherReportOption);
+
+		const otherReasonSubmission = await interaction.awaitModalSubmit({
+			time: 25000,
+		}).catch(()  => null);
+		if(!otherReasonSubmission) return interaction.followUp('The command has been canceled as there was no reason provided in time');
+		const otherReason = otherReasonSubmission.fields.getTextInputValue('inputOtherReason');
+		await otherReasonSubmission.reply ({ content: `Your report has been submitted to online moderators.` });
+		const channel = interaction.client.channels.cache.get('568454707039830049');
+		channel.send(`${interaction.member} has reported ${reportedUser} for ${otherReason}`);
 		}
 		else {
-			// const channel = client.channels.cache.get('568454707039830049');
-			// channel.send('test');
 		await interaction.reply({
 			content: 'Your report has been submitted to online moderators.',
 			// ephemeral: true,
 		});
-}
-	},
+		const channel = interaction.client.channels.cache.get('568454707039830049');
+		channel.send(`${interaction.member} has reported ${reportedUser} for ${reportReason}`);
+	}},
 };

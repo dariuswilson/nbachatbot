@@ -1,0 +1,1 @@
+			Routes.applicationGuildCommands(clientId, guildId),

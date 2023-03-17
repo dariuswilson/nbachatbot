@@ -1,8 +1,11 @@
 /* eslint-disable no-inline-comments */
-const { Events } = require('discord.js');
+const { Events, BaseInteraction } = require('discord.js');
 
 module.exports = {
 	name: Events.InteractionCreate,
+/**
+* @param { BaseInteraction} interaction
+*/
 	async execute(interaction) {
 		if (interaction.isChatInputCommand()) { // Changed this in order to allow interaction othar than a slash commands.
 
@@ -21,14 +24,6 @@ module.exports = {
 				console.error(error);
 			}
 		}
-		else if (interaction.isModalSubmit()) {
-			// Handle the ModaLSubmitInteraction Here
-			if (interaction.customId === 'Report Other') {
-				const otherReason = interaction.fields.getTextInputValue('inputOtherReason');
-					interaction.reply ({ content: `Your report has been submitted to online moderators. ${interaction.targetMember}, 
-					Reason: ${otherReason}` });
+			
 			}
 		}
-		console.log(interaction);
-	},
-};
