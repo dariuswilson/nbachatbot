@@ -1,39 +1,27 @@
-# NBA-Player-List
+# NBA-Chat-Bot
 
 ## Description
 
-A simple React web application that allows uers to select a NBA team from a dropdown. The players of the selected team will be displayed in a list below.
+This Discord bot was developed with the goal of improving moderation and providing enhanced functionalities in a large NBA server.
 
 Powered By:
 
 <ul>
-    <li>Rapid API: https://rapidapi.com/theapiguy/api/free-nba</li>
+    <li>Discord API: https://discord.com/developers/docs/reference</li>
 </ul>
 
 Technologies used:
 
 <ul>
-    <li>Axios</li>
-    <li>Express</li>
-    <li>HTML/CSS</li>
-    <li>JavaScript</li>
-    <li>Python</li>
-    <li>React</li>
+    <li>JavaScript(Node JS)</li>
+    <li>JDiscordJS</li>
+    <li>npm(Node Package Manager)</li>
+    <li>JavaScript(Node JS)</li>
+    <li>JSON</li>
+    <li>Databases(SQLite)</li>
 </ul>
-
-## Project Workflow
-
-![Alt text](screenshots/steps.png)
-
-<ol>
-    <li>Fetch Data From Public API</li>
-    <li>Python Script Sorting</li>
-    <li>Data Storage in JSON File</li>
-    <li>BackEnd Server</li>
-    <li>FrontEnd Server</li>
-</ol>
 
 ## Screenshots
 
-![Alt text](screenshots/select%20a%20team.png)
+![Alt text](https://gyazo.com/2b21277fe8ca8827d0fcbdaa76f80221)
 ![Alt text](screenshots/gsw.png)
