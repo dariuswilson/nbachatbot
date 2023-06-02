@@ -1,6 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+// const { QuickDB } = require("quick.db");
+// const db = new QuickDB();
+
 // eslint-disable-next-line no-inline-comments
 require('dotenv').config();
 

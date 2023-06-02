@@ -25,6 +25,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
+
 const rest = new REST({ version: '10' }).setToken(token);
 
 (async () => {
