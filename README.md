@@ -23,7 +23,10 @@ Technologies used:
 
 ## Screenshots
 
-![Alt text](screenshots/initialReport.png)
-![Alt text](screenshots/reportLogged.png)
-![Alt text](screenshots/OwnerCommand.png)
-<video src="screenshots/gify.mp4" controls title="Title"></video>
+## ![Alt text](screenshots/initialReport.png)
+
+## ![Alt text](screenshots/reportLogged.png)
+
+## ![Alt text](screenshots/OwnerCommand.png)
+
+![Alt text](https://gyazo.com/2b21277fe8ca8827d0fcbdaa76f80221)
