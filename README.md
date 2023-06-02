@@ -23,5 +23,5 @@ Technologies used:
 
 ## Screenshots
 
-![Alt text](https://gyazo.com/2b21277fe8ca8827d0fcbdaa76f80221)
+![Alt text](https://gyazo.com/765d6b21dc79193432aa01845cef05f7)
 ![Alt text](screenshots/gsw.png)
