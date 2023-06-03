@@ -14,7 +14,7 @@ Technologies used:
 
 <ul>
     <li>JavaScript(Node JS)</li>
-    <li>JDiscordJS</li>
+    <li>DiscordJS</li>
     <li>npm(Node Package Manager)</li>
     <li>JavaScript(Node JS)</li>
     <li>JSON</li>
